@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>Register</h1>
+    <p>Registration is coming soon.</p>
+    <button id="backToLogin">Back to Login</button>
+    <script>
+        const { ipcRenderer } = require('electron');
+        document.getElementById('backToLogin').addEventListener('click', () => {
+            ipcRenderer.send('open-login');
+        });
+    </script>
+</body>
+</html>

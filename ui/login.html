@@ -24,35 +24,6 @@
         <button type="button" id="registerButton">Register</button>
         <p id="errorMessage" class="error"></p>
     </form>
-    <script>
-        document.getElementById('loginForm').onsubmit = function(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('errorMessage');
-
-            if(username === '') {
-                errorMessage.textContent = 'Username is required.';
-                return;
-            }
-            if(password === '') {
-                errorMessage.textContent = 'Password is required.';
-                return;
-            }
-            // Assume a successful login for this example
-            console.log('Username:', username);
-            console.log('Password:', password);
-            if(document.getElementById('rememberMe').checked) {
-                localStorage.setItem('rememberedUser', username);
-            } else {
-                localStorage.removeItem('rememberedUser');
-            }
-            alert('Logged in successfully!');
-        };
-
-        document.getElementById('registerButton').onclick = function() {
-            alert('Register functionality to be implemented.');
-        };
-    </script>
+    <script src="login.js"></script>
 </body>
 </html>
