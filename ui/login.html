@@ -1,325 +1,58 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Synthesis Launcher - Login</title>
+    <title>Login</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Press Start 2P', cursive;
-            background: linear-gradient(135deg, #1a472a 0%, #2d5016 50%, #4a7c59 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.1) 2px, rgba(0,0,0,.1) 4px),
-                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.1) 2px, rgba(0,0,0,.1) 4px);
-            opacity: 0.3;
-            pointer-events: none;
-        }
-        
-        .grass-blocks {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: linear-gradient(to bottom, #7cbd3e 0%, #7cbd3e 60%, #8b6f47 60%, #8b6f47 100%);
-            box-shadow: inset 0 4px 8px rgba(0,0,0,0.3);
-        }
-        
-        .login-container {
-            background: rgba(60, 60, 60, 0.95);
-            border: 4px solid #3f3f3f;
-            box-shadow: 
-                0 0 0 2px #000,
-                0 8px 32px rgba(0,0,0,0.5),
-                inset 0 2px 4px rgba(255,255,255,0.1);
-            padding: 40px;
-            width: 450px;
-            position: relative;
-            z-index: 10;
-            image-rendering: pixelated;
-        }
-        
-        .logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .logo h1 {
-            font-size: 24px;
-            color: #ffffff;
-            text-shadow: 
-                3px 3px 0 #000,
-                4px 4px 8px rgba(0,0,0,0.5);
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-        
-        .logo p {
-            font-size: 8px;
-            color: #aaaaaa;
-            letter-spacing: 1px;
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        label {
-            display: block;
-            color: #ffffff;
-            font-size: 10px;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 0 #000;
-        }
-        
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 3px solid #000;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-            color: #ffffff;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 10px;
-            transition: all 0.3s;
-        }
-        
-        input[type="text"]:focus,
-        input[type="password"]:focus {
-            outline: none;
-            border-color: #5cb85c;
-            box-shadow: 
-                inset 0 0 10px rgba(0,0,0,0.5),
-                0 0 10px rgba(92, 184, 92, 0.5);
-        }
-        
-        input::placeholder {
-            color: #666;
-        }
-        
-        .button-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-        
-        button {
-            flex: 1;
-            padding: 15px;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 10px;
-            cursor: pointer;
-            border: 3px solid #000;
-            position: relative;
-            transition: all 0.1s;
-            text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
-        }
-        
-        button:active {
-            transform: translateY(2px);
-            box-shadow: none;
-        }
-        
-        .btn-login {
-            background: linear-gradient(to bottom, #7cbd3e 0%, #5c9e2e 100%);
-            color: #ffffff;
-            box-shadow: 
-                inset 0 -3px 0 rgba(0,0,0,0.2),
-                0 4px 0 #2d5016;
-        }
-        
-        .btn-login:hover {
-            background: linear-gradient(to bottom, #8cd34e 0%, #6cae3e 100%);
-        }
-        
-        .btn-register {
-            background: linear-gradient(to bottom, #5c9ccc 0%, #4a7ca8 100%);
-            color: #ffffff;
-            box-shadow: 
-                inset 0 -3px 0 rgba(0,0,0,0.2),
-                0 4px 0 #2d4c68;
-        }
-        
-        .btn-register:hover {
-            background: linear-gradient(to bottom, #6cacdc 0%, #5a8cb8 100%);
-        }
-        
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
-        }
-        
-        .checkbox-group input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-            cursor: pointer;
-        }
-        
-        .checkbox-group label {
-            margin: 0;
-            cursor: pointer;
-            font-size: 8px;
-        }
-        
-        .links {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .links a {
-            color: #7cbd3e;
-            font-size: 8px;
-            text-decoration: none;
-            text-shadow: 1px 1px 0 #000;
-            transition: color 0.3s;
-        }
-        
-        .links a:hover {
-            color: #8cd34e;
-        }
-        
-        .clouds {
-            position: absolute;
-            top: 50px;
-            left: 0;
-            right: 0;
-            height: 100px;
-            opacity: 0.3;
-            z-index: 1;
-        }
-        
-        .cloud {
-            position: absolute;
-            background: white;
-            width: 100px;
-            height: 30px;
-            border-radius: 0;
-            animation: float 20s infinite linear;
-        }
-        
-        .cloud::before,
-        .cloud::after {
-            content: '';
-            position: absolute;
-            background: white;
-        }
-        
-        .cloud::before {
-            width: 50px;
-            height: 30px;
-            top: -15px;
-            left: 20px;
-        }
-        
-        .cloud::after {
-            width: 60px;
-            height: 30px;
-            top: -10px;
-            right: 20px;
-        }
-        
-        .cloud:nth-child(1) {
-            left: -100px;
-            animation-delay: 0s;
-        }
-        
-        .cloud:nth-child(2) {
-            left: -100px;
-            animation-delay: 7s;
-            top: 100px;
-        }
-        
-        .cloud:nth-child(3) {
-            left: -100px;
-            animation-delay: 14s;
-            top: 150px;
-        }
-        
-        @keyframes float {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(calc(100vw + 200px));
-            }
-        }
+        body { font-family: Arial, sans-serif; }
+        form { max-width: 300px; margin: auto; }
+        .error { color: red; }
     </style>
 </head>
 <body>
-    <div class="clouds">
-        <div class="cloud"></div>
-        <div class="cloud"></div>
-        <div class="cloud"></div>
-    </div>
-    
-    <div class="login-container">
-        <div class="logo">
-            <h1>SYNTHESIS</h1>
-            <p>LAUNCHER v1.0</p>
-        </div>
-        
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="username">USERNAME</label>
-                <input type="text" id="username" name="username" placeholder="Steve" required>
-            </div>
-            
-            <div class="checkbox-group">
-                <input type="checkbox" id="remember" name="remember">
-                <label for="remember">REMEMBER ME</label>
-            </div>
-            
-            <div class="button-group">
-                <button type="submit" class="btn-login">LOGIN</button>
-                <button type="button" class="btn-register">REGISTER</button>
-            </div>
-        </form>
-    </div>
-    
-    <div class="grass-blocks"></div>
-    
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <input type="checkbox" id="rememberMe"> Remember Me
+        <br>
+        <button type="submit" id="loginButton">Login</button>
+        <button type="button" id="registerButton">Register</button>
+        <p id="errorMessage" class="error"></p>
+    </form>
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
+        document.getElementById('loginForm').onsubmit = function(event) {
+            event.preventDefault();
             const username = document.getElementById('username').value;
-            
-            // Simple validation
-            if (username) {
-                alert('Login functionality would be implemented here!\nUsername: ' + username);
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            if(username === '') {
+                errorMessage.textContent = 'Username is required.';
+                return;
             }
-        });
-        
-        document.querySelector('.btn-register').addEventListener('click', function() {
-            alert('Registration page would open here!');
-        });
+            if(password === '') {
+                errorMessage.textContent = 'Password is required.';
+                return;
+            }
+            // Assume a successful login for this example
+            console.log('Username:', username);
+            console.log('Password:', password);
+            if(document.getElementById('rememberMe').checked) {
+                localStorage.setItem('rememberedUser', username);
+            } else {
+                localStorage.removeItem('rememberedUser');
+            }
+            alert('Logged in successfully!');
+        };
+
+        document.getElementById('registerButton').onclick = function() {
+            alert('Register functionality to be implemented.');
+        };
     </script>
 </body>
 </html>
