@@ -35,6 +35,12 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            const username = localStorage.getItem('username');
+            const welcomeMessage = document.getElementById('welcomeMessage');
+            if (welcomeMessage) {
+                welcomeMessage.textContent = username ? `Welcome, ${username}!` : 'Welcome!';
+            }
+
             // Add event listeners to buttons
             document.getElementById('playButton').addEventListener('click', () => {
                 validateProfileSelection();
@@ -48,6 +54,7 @@
     </script>
 </head>
 <body>
+    <h1 id="welcomeMessage">Welcome!</h1>
     <div id="sidebar">
         <button id="playButton">Play</button>
         <button id="settingsButton">Settings</button>
